@@ -1,16 +1,11 @@
 import app from './src/app.js'
 import mongoose from 'mongoose'
 
-let mydb = async ()=>{
-    await mongoose.connect("mongodb+srv://server:ml6BAhZGH4g36yuw@cluster.oo0dktc.mongodb.net/notes-data")
-     console.log("MOngodb connceted from sevrer ")
+let mydb = async()=>{
+   await mongoose.connect("mongodb+srv://server:ml6BAhZGH4g36yuw@cluster.oo0dktc.mongodb.net/notes-data")
+   console.log("Databse connceted from server")
 }
-
-mudb()
+mydb()
 app.listen(3000,()=>{
-    console.log("server is running")
+    console.log("Server is running to 3000 port")
 })
-
-
-// run a server
-// make a connetion from nongodb to server

@@ -1,23 +1,11 @@
-import mongoose, { model, Schema } from 'mongoose'
+import mongoose from 'mongoose'
 
-const myschema = new mongoose.Schema(
-  [  {
-        username:String,
-        password: String,
+let myschema =  new mongoose.Schema(
+   [ {
+       username : String,
+       email : String 
     }]
 )
 
-let usermodel  = mongoose.model("userdata",myschema)
-
+let usermodel =  mongoose.model("userdatas",myschema)
 export default usermodel
-
-
-
-
-
-
-
-
-
-
-// Create a schema and create a model

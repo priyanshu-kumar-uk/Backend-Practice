@@ -1,11 +1,13 @@
 import mongoose from 'mongoose'
 
-let myschema = new mongoose.Schema(
-    [{
-        title:String,
-        decription : String
-    }]
+let userschema = new mongoose.Schema(
+    [
+        {
+           username:String,
+           email: String
+        }
+    ]
 )
 
-let usermdoel= mongoose.model("user",myschema)
-export default usermdoel
+let usermodel = mongoose.model("clinet",userschema)
+export default usermodel

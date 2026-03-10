@@ -1,52 +1,48 @@
 import express from 'express'
-import mongoose from 'mongoose'
-import cors from 'cors'
 import usermodel from './model/userdata.js'
-const app  = express()
+import cors from 'cors'
+const app = express()
 app.use(express.json())
 app.use(cors())
 
-app.get("/notes",async (req,res)=>{
- let data =  await usermodel.find()
+app.post("/user",async (req,res)=>{
+    let{username,email}= req.body
+  await usermodel.create({
+    username,
+    email,
+  })
+
   res.status(201).json({
-    message:"data fetched",
+    message:"data is created"
+  })
+})
+
+app.get("/user", async (req,res)=>{
+  let data = await usermodel.find()
+
+  res.status(200).json({
+    message: "data is fected",
     data
   })
 })
 
-app.post("/notes", async (req,res)=>{
-   let{title,decription}= req.body
+app.delete("/user/:id", async (req,res)=>{
+ let id =  req.params.id
+ await  usermodel.findByIdAndDelete(id)
 
-    await usermodel.create(
-    {
-        title,
-        decription,
-    }
-)   
-
-res.status(201).json({
-    message:"Userdata have created"
+ res.status(200).json({
+    message:"data has been deleted"
+ })
 })
 
-})
+app.patch("/user/:id",async (req,res)=>{
+    let{username,email} = req.body
+    let id = req.params.id
+  await usermodel.findByIdAndUpdate(id,{username,email})
 
-app.delete("/notes/:id",async (req,res)=>{
-     const id =  req.params.id
-     await usermodel.findByIdAndDelete(id)
-
-     res.status(200).json({
-        message:"data has been deleted"
-     })
-})
-
-app.patch("/notes/:id", async(req,res)=>{
-   let id  = req.params.id
-   let{title,decription}= req.body
-   await usermodel.findByIdAndUpdate(id,{decription,title})
-   
-   res.status(200).json({
+  res.status(200).json({
     message:"data has been updated"
-   })
+  })
 })
 
 export default app

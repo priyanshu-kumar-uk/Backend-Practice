@@ -1,7 +1,6 @@
 import usermodel from '../model/model.js'
 import jwt from 'jsonwebtoken'
 import config from '../config/config.js'
-import cookie from 'cookie-parser'
 export async function register (req,res){
      let{email,password,userType} = req.body
      let user =  await usermodel.create({
@@ -29,8 +28,8 @@ export async function register (req,res){
 
 export async function tokenverify(req,res){
     let usertoken  = req.cookies.usertoken
-  let decode = jwt.verify(usertoken,config.TOKEN)
-  
+    let decode = jwt.verify(usertoken,config.TOKEN)
+
   res.status(200).json({
     message:"token verify",
     decode

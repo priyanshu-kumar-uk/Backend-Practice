@@ -12,7 +12,8 @@ import config from '../config/config.js'
 
    let userToken = jwt.sign({
         email : users.email,
-        id : users._id
+        id : users._id,
+        userType: users.userType
     },config.TOKEN,{
         expiresIn:"8h"
     }
@@ -25,12 +26,3 @@ import config from '../config/config.js'
     })
 }
 
-export  async function verifyToken(req,res) {
-    let userToken = req.body.userToken
-    let verifyuser = jwt.verify(userToken,config.TOKEN)
-
-     res.status(201).json({
-        message:"User is verify by token",
-        verifyuser
-     })
-}

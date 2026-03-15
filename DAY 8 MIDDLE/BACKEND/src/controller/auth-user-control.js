@@ -1,11 +1,14 @@
 import usermdoel from '../model/mdoel.js'
 import jwt from 'jsonwebtoken'
 import config from '../config/config.js'
+import crypto from 'crypto'
 export  async function register (req,res) {
   let{email,password,userType} = req.body
   let exitEmail = await usermdoel.findOne({email})
+  
+  let passwordhash = crypto.createHash("sha512").update(password).digest("hex")
 
-   if(email===exitEmail.email){
+   if(email===exitEmail){
     return res.status(403).json({
         message: "Please Enter Another Email"
     })
@@ -13,7 +16,7 @@ export  async function register (req,res) {
 
     await usermdoel.create({
        email,
-       password,
+       password:passwordhash,
        userType
     })
 
@@ -33,7 +36,9 @@ export async function login(req,res) {
         })
   }
   
-  if( password !== userFind.password){
+ let passwordHash = crypto.createHash("sha512").update(password).digest("hex")
+
+  if( passwordHash !== userFind.password){
        return res.status(403).json({
         message:"Somthing Went Wrong Please try again"
        })

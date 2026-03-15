@@ -16,6 +16,6 @@ export async function verifyToken(req,res,next) {
       message:"Invalid User Only For Artist"
    })
  }
- 
+ req.decode = decode
  next()
 }

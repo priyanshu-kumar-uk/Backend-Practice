@@ -1,0 +1,90 @@
+*{
+    padding: 0;
+    margin: 0;
+
+}
+
+html,body,#root{
+    width: 100%;
+    height: 100%;
+}
+
+.main{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+}
+
+.register{
+    width: 100%;
+    height: 100%;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+}
+
+.register-form{
+    width: 400px;
+    height: 400px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.register-form form{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+}
+.register-form form input{
+    width: 90%;
+    padding: 16px;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+.radios{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    cursor: pointer;
+
+}
+
+.radio{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
+}
+.radio label,.radio input {
+    cursor: pointer;
+}
+
+button{
+    width: fit-content;
+    padding: 10px 30px;
+    width: 60%;
+    border-radius: 5px;
+    border: 1px solid black;
+    cursor: pointer;
+   font-size: 20px;
+}
+
+.another{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.another h5{
+    font-size: 20px;
+    font-weight: 300;
+}

@@ -4,6 +4,6 @@ import {Router} from 'express'
 let authRouter = Router()
 
 authRouter.post("/register",register)
-authRouter.get("/login",login)
+authRouter.post("/login",login)
 
 export default authRouter

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-let songSchema = new mongoose({
+let songSchema = new mongoose.Schema({
     title:String,
     artist:String,
     url : String,

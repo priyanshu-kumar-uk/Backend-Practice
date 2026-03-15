@@ -1,0 +1,161 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing:border-box;
+}
+
+html,body,#root{
+    width:100%;
+    height:100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.main{
+    width:100%;
+    height:100%;
+    background:black;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.mid{
+    width:60%;
+    height:60%;
+    border:4px solid white;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:60px;
+}
+
+.mid h1{
+  color:white;
+  font-size:48px;
+  letter-spacing:1px;
+}
+
+.tags{
+    display:flex;
+    gap:40px;
+}
+
+.tags-link{
+    border:1px solid white;
+    color:white;
+    padding:12px 32px;
+    border-radius:6px;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+.tags-link:hover{
+    background:white;
+    color:black;
+}
+
+/* register page */
+
+.register{
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:black;
+}
+
+.register-form{
+    width:380px;
+    background:white;
+    border-radius:6px;
+    padding:25px;
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+.register-form form{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    align-items:center;
+}
+
+.register-form form input{
+    width:90%;
+    padding:14px;
+    border-radius:5px;
+    border:1px solid #999;
+    outline:none;
+}
+
+.register-form form input:focus{
+    border-color:black;
+}
+
+.radios{
+    display:flex;
+    gap:30px;
+}
+
+.radio{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    cursor:pointer;
+}
+
+.input-error{
+    border: 2px solid red;
+}
+
+button{
+    width:60%;
+    padding:10px;
+    border-radius:5px;
+    border:1px solid black;
+    cursor:pointer;
+    font-size:18px;
+    background:black;
+    color:white;
+    transition:0.3s;
+}
+
+button:hover{
+    background:white;
+    color:black;
+}
+
+.another{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+}
+
+.another h5{
+    font-size:16px;
+    font-weight:400;
+}
+
+.link-tag{
+  text-decoration:none;
+  font-size:16px;
+  color:black;
+  font-weight:500;
+}
+
+.link-tag:hover{
+    text-decoration:underline;
+}
+
+.dashbord{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: red;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+}

@@ -3,13 +3,17 @@ import {Link} from 'react-router'
 import {useForm} from 'react-hook-form'
 import {useNavigate} from 'react-router-dom'
 import {login} from '../Service/authApi.js'
+import {userAuth} from '../Hooks/auth.js'
 
 const Login = () => {
   let{register,handleSubmit,reset,formState:{errors}}= useForm()
   let navigate = useNavigate()
 
+  let{handleLogin} = userAuth()
+
  async function loginForm(data){
-   let response = await login(data.email,data.password)
+   let response = await handleLogin(data)
+   
     alert(response.message)
     reset()
     navigate("/metaMusic")

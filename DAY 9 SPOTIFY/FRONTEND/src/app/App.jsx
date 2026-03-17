@@ -10,8 +10,6 @@ const App = () => {
               <Link to= "/login" className='tags-link'>Login</Link>
               <Link to= "/register" className='tags-link'>Register</Link>
             </div>
-
-        
       </div>
     </div>
   )

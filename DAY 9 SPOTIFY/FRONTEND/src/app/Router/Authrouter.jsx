@@ -1,8 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
-import App from "../app";
+import App from "../App.jsx";
 import Login from "../../pages/Login";
 import Register from "../../pages/Register";
 import Dashbord from "../../pages/Dashbord";
+import ProtectedRoute from "../../component/ProtectedRoute";
+import Uploadsong from "../../pages/Uploadsong.jsx";
 
 let router = createBrowserRouter([
   {
@@ -13,15 +15,20 @@ let router = createBrowserRouter([
     path: "/login",
     element: <Login />,
   },
-
   {
     path: "/register",
     element: <Register />,
   },
-  {
-    path:'/metaMusic',
-    element: <Dashbord/>
-  }
+ {
+  path:'/metaMusic',
+  element:<ProtectedRoute>
+       <Dashbord/>
+    </ProtectedRoute>
+ },
+ {
+  path:"/upload",
+  element:<Uploadsong/>
+ }
 ]);
 
 export default router;

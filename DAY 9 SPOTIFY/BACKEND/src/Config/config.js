@@ -1,11 +1,11 @@
 import dotenv from 'dotenv'
-import { response } from 'express'
 
 dotenv.config()
 
 let config = {
     MONGO_URI : process.env.MONGO_URI,
-    TOKEN : process.env.TOKEN
+    TOKEN : process.env.TOKEN,
+    IMAGE_KEY : process.env.IMAGE_KEY
 }
 
 export default config

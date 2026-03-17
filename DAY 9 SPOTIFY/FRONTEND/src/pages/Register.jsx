@@ -2,8 +2,9 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import {registerUser} from '../Service/authApi.js'
+import {userAuth} from '../Hooks/auth.js'
 const Register = () => {
+
   let navigate = useNavigate();
   let {
     register,
@@ -12,12 +13,13 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
+  let{user,handleRegister} = userAuth()
 
  async function registerForm(data) {
-  let response =   await registerUser(data.email,data.password,data.userType)
 
+  let response = await handleRegister(data)
     alert(response.message)
-    
+
     navigate("/login");
     reset();
   }

@@ -4,16 +4,16 @@ import {cloudUpload} from '../service/storage.js'
 import songModel from '../model/songmodel.js'
  export async function uploadSong(req,res){
    let data =  req.file
-
+   
    let metaData =  nodeId3.read(data.buffer)
    let{title,artist,image} = metaData
     
    let file =  await cloudUpload(data.buffer,data.originalname)
    let imagefile =  await cloudUpload(image.imageBuffer,image.originalname +".png")
-
+   
    let{url} = file
    let{thumbnailUrl}= imagefile
-
+   
    let{id}= req.decode
   
   let songData = await songModel.create({

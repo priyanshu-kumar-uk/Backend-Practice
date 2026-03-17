@@ -1,16 +1,10 @@
 import {Router} from 'express'
-import {register,login} from '../Controller/user-auth-controler.js'
-import {verifyToken} from '../verify/verifyToken.js'
+import {register,login, getMe} from '../Controller/user-auth-controler.js'
 
 let authRouter = Router()
 
-authRouter.post("/register",register)
-authRouter.post("/login",login)
-authRouter.get("/metaMusic",verifyToken,((req,res)=>{
-      res.json({
-        success:true,
-        user: req.decode
-    })
-}))
+authRouter.post("/register",register)   // c
+authRouter.post("/login",login)   //c
+authRouter.get("/getme", getMe)  //c
 
 export default authRouter

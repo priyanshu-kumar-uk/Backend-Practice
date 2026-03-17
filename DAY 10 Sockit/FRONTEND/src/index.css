@@ -1,0 +1,117 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Full height */
+html, body {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(79, 101, 79, 0.284);
+}
+
+/* Center chat box */
+.main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Chat container */
+.message-data {
+    margin-top: 50px;
+
+    width: 500px;
+    height: 600px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    overflow: hidden;
+}
+
+/* Top header */
+.top {
+    height: 60px;
+    background-color: #075E54;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    font-size: 1.2rem;
+    box-shadow: 0px 5px 7px white   ;
+    
+}
+
+/* Middle messages area */
+.mid {
+    flex: 1;
+    padding: 15px;
+    background-color: #e5ddd5;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Message bubbles */
+.p {
+    padding: 10px 15px;
+    border-radius: 20px;
+    max-width: 30%;
+    word-wrap: break-word;
+    background-color: #dcf8c6;
+}
+
+
+ .outcoming{
+    background-color: #ffffff;
+    align-self: flex-end;
+    padding: 10px 15px;
+    border-radius: 20px;
+    max-width: 30%;
+    word-wrap: break-word;
+ }
+
+/* Bottom input area */
+.bottom {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    background-color: #f0f0f0;
+    border-top: 1px solid #ddd;
+}
+
+.bottom form {
+    display: flex;
+    width: 100%;
+}
+
+.bottom input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #2b2929;
+    outline: none;
+    background-color: rgba(248, 244, 244, 0.899);
+}
+
+.bottom button {
+    padding: 10px 15px;
+    margin-left: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: #266090ae;
+    color: white;
+    cursor: pointer;
+}
+
+.bottom button:hover {
+    background-color: #266090dd;
+}

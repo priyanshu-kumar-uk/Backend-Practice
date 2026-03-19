@@ -1,8 +1,19 @@
 import mongoose from 'mongoose'
   let songSchema  = new mongoose.Schema({
-    title: String,
-    artist : String,
-    url: String,
+    title:{
+      type: String,
+      required:true,
+      trim : true,
+      },
+    artist :{
+      type: String,
+      required: true,
+      trim: true
+    },
+    url:{
+      type:String,
+      required: true
+    },
     postUrl: String,
     user:{
           type:mongoose.Schema.Types.ObjectId,                 //is model sai user ka data nikal store karo

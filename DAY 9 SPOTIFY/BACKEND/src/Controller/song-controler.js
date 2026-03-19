@@ -13,6 +13,7 @@ export async function songUpload(req, res) {
   if (!data) {
     return res.status(401).json({
       message: "Please Upload a File",
+      success : false
     });
   }
 
@@ -21,6 +22,12 @@ export async function songUpload(req, res) {
     image.imageBuffer,
     image.originalname + ".png",
   );
+
+  if(!file){
+    return res.status(500).json({
+      message:"Please First Provide Data from Imagekit"
+    })
+  }
 
   let{url} = file
   let{thumbnailUrl}  = imagefile
@@ -34,9 +41,10 @@ let songData =  await songModel.create({
      user: id
  })
 
-
   res.status(201).json({
     message: "Song Createted",
+    success:true,
+    songData
   });
 }
 
@@ -45,7 +53,8 @@ let songData =  await songModel.create({
     let songData = await songModel.find()
 
     res.status(201).json({
-      message:"Song have been got",
+      message:"Song have been get",
+      success:true,
       songData
     })
 }

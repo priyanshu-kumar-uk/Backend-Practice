@@ -2,7 +2,6 @@ import usermodel from "../Model/userModel.js";
 import crypto from "crypto";
 import jwt from "jsonwebtoken";
 import config from "../Config/config.js";
-import { decode } from "punycode";
 export async function register(req, res) {
   let { email, password, userType } = req.body;
 
@@ -11,7 +10,7 @@ export async function register(req, res) {
     .update(password)
     .digest("hex");
 
-  let exitsUser = await usermodel.findOne({ email });
+  let exitsUser = await usermodel.findOne({email});
 
   if (exitsUser) {
     return res.status(409).json({
@@ -25,12 +24,27 @@ export async function register(req, res) {
     password: hashPasssword,
     userType,
   });
-
-  res.status(201).json({
+   
+  return res.status(201).json({
     message: "User Registerd Susccesfully",
     success: true,
     user,
   });
+}
+
+export async function registerAuthgoogle(req,res){
+      let{id,displayName,provider} = req.user
+      let{picture,email,} = req.user._json
+
+      console.log(id,displayName,provider)
+      console.log(picture,email)
+      
+      res.status(201).json({
+        message:"Google verifyed user",
+        id,
+        displayName,
+        email
+      })
 }
 
 export async function login(req, res) {

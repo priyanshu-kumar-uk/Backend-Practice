@@ -32,20 +32,7 @@ export async function register(req, res) {
   });
 }
 
-export async function registerAuthgoogle(req,res){
-      let{id,displayName,provider} = req.user
-      let{picture,email,} = req.user._json
 
-      console.log(id,displayName,provider)
-      console.log(picture,email)
-      
-      res.status(201).json({
-        message:"Google verifyed user",
-        id,
-        displayName,
-        email
-      })
-}
 
 export async function login(req, res) {
   let { email, password } = req.body;
@@ -90,19 +77,19 @@ export async function login(req, res) {
 export async function getMe(req, res) {
   const token = req.cookies.userToken;
 
-  if (!token) {
+   if (!token) {
     return res.status(401).json({
       message: "Access not allowed",
       success: false,
     });
-  }
+   }
 
-  const decoded = jwt.verify(token, config.TOKEN);
-  let{email} = decoded
+   const decoded = jwt.verify(token, config.TOKEN);
+   let{email} = decoded
 
- let decodeData = await usermodel.findOne({email})
+   let decodeData = await usermodel.findOne({email})
 
-  return res.status(200).json({
+   return res.status(200).json({
     message: "Access granted",
     success: true,
     decoded,

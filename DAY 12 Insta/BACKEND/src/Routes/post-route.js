@@ -5,9 +5,8 @@ import multer from 'multer'
 const storage  = multer.memoryStorage()
 const upload = multer({storage:storage})
 
-
 let mediaRoute = Router()
 
-mediaRoute.post("/media",upload.array("post",5),uploadMedia)
+mediaRoute.post("/posts",upload.array("post",5),uploadMedia)
 
 export default mediaRoute

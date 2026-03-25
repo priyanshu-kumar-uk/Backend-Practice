@@ -2,15 +2,35 @@ import mongoose from 'mongoose'
 
 let postSchema = new mongoose.Schema({
     caption :{
-      type:  String,        
+      type:  String,
+      default:"",
+      maxlength: 2200 ,      
     } ,
-    likeCount: Number,
-    comment : String,
+    likeCount:{
+       type: Number,
+       default: 0
+    },
+    comment :{ 
+      type: Number,
+      default: 0
+    },
     media:[{
-           url : url,
-           mediaType: String,
+           url : {
+            type: String,
+            required: true
+           },
+           mediaType: {
+            type: String,
+            enum:["image","video"],
+            required: true
+           }
     }],
-    user:String,
+    user:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "user",
+        required: true
+    },
+},{
     timestamps:true
 })
 

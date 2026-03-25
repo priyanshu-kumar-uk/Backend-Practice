@@ -4,7 +4,7 @@ import {registerUser,login,getme} from '../Service/authApi.js'
 
 export function  userAuth(){
     let{user,setUser,loding,setLoding} = useContext(AuthContext)
-
+         
      async function  handleRegister({email,password,userType}){
       let data = await  registerUser(email,password,userType)
       setUser(data.user)
@@ -24,7 +24,7 @@ export function  userAuth(){
     } 
 
      return{
-         user,
+        user, 
         handleRegister,
         handleLogin,
         getMe

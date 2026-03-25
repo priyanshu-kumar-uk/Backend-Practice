@@ -18,7 +18,7 @@ const Register = () => {
  async function registerForm(data) {
 
   let response = await handleRegister(data)
-    alert(response.message)
+     alert(response.message)
 
     navigate("/login");
     reset();
@@ -59,7 +59,7 @@ const Register = () => {
               <input
                 type="radio"
                 value="user"
-                {...register("user", {required: true })}
+                {...register("userType", {required: true })}
               />
             </div>
             <div className="radio">
@@ -67,7 +67,7 @@ const Register = () => {
               <input
                 type="radio"
                 value="artist"
-                {...register("user", { required: true })}
+                {...register("userType", { required: true })}
               />
             </div>
           </div>

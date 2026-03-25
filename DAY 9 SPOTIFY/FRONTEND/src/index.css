@@ -150,12 +150,522 @@ button:hover{
     text-decoration:underline;
 }
 
-.dashbord{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: red;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  color: white;
+}
+
+.dashbord {
+  width: 100%;
+  min-height: 100vh;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+}
+
+/* top navbar */
+.dash-top {
+  width: 100%;
+  height: 72px;
+  background: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  gap: 18px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+    cursor: pointer;
+
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.search {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.search input {
+  width: 100%;
+  max-width: 650px;
+  height: 48px;
+  border: none;
+  outline: none;
+  border-radius: 999px;
+  background: #242424;
+  color: white;
+  padding: 0 22px;
+  font-size: 16px;
+}
+
+.search input::placeholder {
+  color: #b3b3b3;
+}
+
+.profile {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #9b5c36;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+    cursor: pointer;
+
+}
+
+/* middle content */
+.dash-mid {
+  flex: 1;
+  overflow-y: auto;
+  background: linear-gradient(to bottom, #24124b 0%, #121212 24%, #0b0b0b 60%);
+  padding: 22px 18px 120px;
+}
+
+.section {
+  margin-bottom: 42px;
+}
+
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.section-head h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+}
+
+.section-head span {
+  font-size: 14px;
+  font-weight: 600;
+  color: #b3b3b3;
+  cursor: pointer;
+}
+
+/* horizontal scroll */
+.songs-row {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  flex-wrap: nowrap;
+  scroll-behavior: smooth;
+  padding-bottom: 8px;
+}
+
+.songs-row::-webkit-scrollbar {
+  height: 8px;
+}
+
+.songs-row::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.songs-row::-webkit-scrollbar-thumb {
+  background: #2b2b2b;
+  border-radius: 10px;
+}
+
+.song-card {
+  min-width: 220px;
+  max-width: 220px;
+  background: transparent;
+  border-radius: 10px;
+  padding: 10px;
+  transition: 0.3s ease;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.song-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.song-image {
+  width: 100%;
+  height: 220px;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.song-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.play-btn {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background: #1db954;
+  color: black;
+  font-size: 18px;
+  font-weight: bold;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.song-card:hover .play-btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.song-card h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.song-card p {
+  font-size: 14px;
+  color: #b3b3b3;
+  line-height: 1.5;
+}
+
+/* bottom sticky player */
+.dash-bottom {
+  width: 100%;
+  height: 90px;
+  background: #000;
+  border-top: 1px solid #2a2a2a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  position: sticky;
+  bottom: 0;
+  z-index: 1000;
+  gap: 20px;
+}
+
+.player-left {
+  width: 25%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 220px;
+}
+
+.player-left img {
+  width: 58px;
+  height: 58px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.player-song-info h4 {
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.player-song-info p {
+  font-size: 13px;
+  color: #b3b3b3;
+}
+
+.player-center {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.controls button {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.main-play {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: white !important;
+  color: black !important;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.progress-box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.progress-box span {
+  font-size: 12px;
+  color: #b3b3b3;
+}
+
+.progress-line {
+  flex: 1;
+  height: 4px;
+  background: #535353;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  width: 45%;
+  height: 100%;
+  background: white;
+  border-radius: 999px;
+}
+
+.player-right {
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  min-width: 140px;
+}
+
+.player-right span {
+  font-size: 18px;
+}
+
+.volume-line {
+  width: 120px;
+  height: 4px;
+  background: #535353;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.volume-fill {
+  width: 70%;
+  height: 100%;
+  background: white;
+}
+
+/* responsive */
+@media (max-width: 900px) {
+  .player-right {
+    display: none;
+  }
+
+  .player-left {
+    width: 35%;
+  }
+
+  .player-center {
+    width: 65%;
+  }
+
+  .song-card {
+    min-width: 180px;
+    max-width: 180px;
+  }
+
+  .song-image {
+    height: 180px;
+  }
+}
+
+@media (max-width: 600px) {
+  .dash-top {
+    padding: 0 10px;
+    gap: 10px;
+  }
+
+  .search input {
+    height: 42px;
+    font-size: 14px;
+  }
+
+  .profile {
+    width: 38px;
+    height: 38px;
+  }
+
+  .dash-mid {
+    padding: 16px 10px 120px;
+  }
+
+  .section-head h2 {
+    font-size: 18px;
+  }
+
+  .song-card {
+    min-width: 150px;
+    max-width: 150px;
+  }
+
+  .song-image {
+    height: 150px;
+  }
+
+  .dash-bottom {
+    height: auto;
+    padding: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .player-left,
+  .player-center {
     width: 100%;
-    height: 100%;
-    background-color: black;
+  }
+
+  .player-center {
+    align-items: flex-start;
+  }
+
+  .progress-box {
+    width: 100%;
+  }
+}
+
+.upload-song{
+    background-color: red;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: rgba(96, 90, 90, 0.253);
+    border: 1px solid white;
+    margin-right: 20px;
+}
+
+.upload-song {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.profile {
+  width: 40px;
+  height: 40px;
+  background-color: #333;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-form-box {
+  width: 400px;
+  background-color: #181818;
+  padding: 25px;
+  border-radius: 12px;
+}
+
+.form-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.form-top h2 {
+  font-size: 22px;
+}
+
+.close-btn {
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 6px;
+  width: fit-content;
+}
+
+.song-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.song-form input {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.submit-btn {
+  background-color: #1db954; 
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
 }

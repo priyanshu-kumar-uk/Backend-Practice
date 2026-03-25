@@ -9,7 +9,8 @@ export async function postimagekit(buffer,fileName){
     try{
          const response = await client.files.upload({
          file: await Imagekit.toFile(buffer,fileName) ,
-         fileName:fileName
+         fileName:fileName,
+         folder:"/instagram/posts"
     })
     return response
 }

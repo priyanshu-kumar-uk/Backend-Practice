@@ -8,9 +8,10 @@ export async function registerUser(email, password, userType) {
       userType,
     });
     return response.data;
+
   } catch (error) {
     let mesErr = error.response?.data?.message;
-    alert(mesErr);
+   return alert(mesErr);
 
   }
 }

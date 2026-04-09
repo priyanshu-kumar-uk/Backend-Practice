@@ -13,6 +13,7 @@ export async function register(req, res) {
   if (existUser) {
     return res.status(400).json({
       message: "User already exist",
+      success:false
     });
   }
 
@@ -27,6 +28,7 @@ export async function register(req, res) {
 
   res.status(201).json({
     message: "User data mil gya",
+    success: true,
     userData,
   });
 }
@@ -72,6 +74,7 @@ export async function login(req, res) {
 
   res.status(201).json({
     message: "User have  logged-in",
+    success:true,
     userGet,
     userToken,
   });
@@ -84,6 +87,7 @@ export async function getme(req, res) {
    
   res.status(201).json({
     message:"User Profile data Found",
+    success:true,
     userGet
   })
 

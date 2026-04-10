@@ -1,5 +1,5 @@
 import {Router} from 'express'
-import { register,login,googleAuth,getme } from '../controller/user-controller.js'
+import { register,login,googleAuth,getme,logOut } from '../controller/user-controller.js'
 import { userRegister,userLogin } from '../Valiodator/user-validaiton.js'
 import {userVerify} from '../middleware/user-verify.js'
 
@@ -9,7 +9,7 @@ const userRouter = Router()
 userRouter.post('/register',userRegister,register)
 userRouter.post('/login',userLogin,login)
 userRouter.get('/getMe',userVerify,getme)
-
+userRouter.post('/logout',logOut)
 
 userRouter.get('/google',  passport.authenticate('google', { scope: ['profile', 'email'] }))
 userRouter.get('/google/callback', passport.authenticate('google', { session: false }),googleAuth);

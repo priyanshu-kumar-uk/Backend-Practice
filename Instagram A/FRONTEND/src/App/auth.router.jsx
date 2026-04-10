@@ -10,14 +10,17 @@ import SearchPage from '../Features/Users/Pages/SearchPage'
 import { Notification } from '../Features/Users/Pages/Notification'
 import Following from '../Features/Post/Components/Following'
 import Followers from '../Features/Post/Components/Followers'
+import Protected from './Protected'
 
 export let router = createBrowserRouter([
   {
     path: '/',
-    element: <Navigate to="/home" replace />,
+    element: <Navigate to="/login"  />,
   },
   {
-    path: '/',
+    element : <Protected/>,
+    children:[
+      {
     element: <Home />,
     children: [
       {
@@ -51,6 +54,9 @@ export let router = createBrowserRouter([
       }
     ],
   },
+    ]
+  },
+ 
   {
     path: '/login',
     element: <Login />,

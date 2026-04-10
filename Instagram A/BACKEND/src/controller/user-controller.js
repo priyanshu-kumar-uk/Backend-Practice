@@ -2,6 +2,7 @@ import userModel from "../model/user-model.js";
 import crypto from "crypto";
 import jwt from "jsonwebtoken";
 import config from "../config/config.js";
+import redis from '../Cache/cache.js'
 
 export async function register(req, res) {
   let { username, email, password, fullname } = req.body;
@@ -148,6 +149,22 @@ export async function googleAuth(req, res) {
     userTokenlogin
   })
 }
+
+export async function logOut(req,res){
+  let token = req.cookies.userToken
+ 
+  res.clearCookie("userToken")     // cookie has been removed
+
+  await redis.set(token,Date.now(),"EX" , 30*30)  // BlackListToken 
+  
+  res.status(201).json({
+    message:"User is Logged Out",
+    token
+  })
+
+}
+
+
 
 
 

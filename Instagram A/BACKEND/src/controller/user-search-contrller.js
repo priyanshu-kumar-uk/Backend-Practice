@@ -25,10 +25,10 @@ export async function userSearch(req, res) {
                 pipeline: [
                     {
                         $match: {
-                            $expr: {
+                            $expr: {  // field vs field comparsion
                                 $and: [
                                     { $eq: ["$follower", Id] },    /*Login user*/
-                                    { $eq: ["$followee", "$$searchUser"] }
+                                    { $eq: ["$followee", "$$searchUser"] } 
                                 ]
                             }
                         }

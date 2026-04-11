@@ -84,7 +84,7 @@ export async function login(req, res) {
 export async function getme(req, res) {
     let {email}  = req.user
 
-  let userGet =  await userModel.findOne({email})
+  let userGet =  await userModel.findOne({email}).explain("queryPlanner")
    
   res.status(201).json({
     message:"User Profile data Found",

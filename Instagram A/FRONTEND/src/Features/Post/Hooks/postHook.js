@@ -8,7 +8,6 @@ export function posts(){
    async function getPosts(){
          let data = await getPost()  // looks behav like return  Promise.resolve(data.postData)
         dispatch(setPost(data.postData))
-        //  return data.postData
     }
 
     async function createPosts({files,caption}) {

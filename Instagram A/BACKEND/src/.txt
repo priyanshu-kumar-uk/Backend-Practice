@@ -1,3 +1,0 @@
-Host =  redis-13783.crce300.ap-south-1-2.ec2.cloud.redislabs.com
-Port =  13783
-Password = rj5axjsBlqhyuT8HnJcvaVu5ZluWwLuu

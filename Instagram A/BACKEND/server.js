@@ -1,8 +1,8 @@
-import app from './src/app.js'
-import {dbconnect} from './src/config/database.js'
 import redis from './src/Cache/cache.js'
+import {dbconnect} from './src/config/database.js'
+import httpServer from './src/socket.io/socket.io.js'
 
 dbconnect()
-app.listen(3000,()=>{
+httpServer.listen(3000,()=>{
     console.log("Server is connected")
 })

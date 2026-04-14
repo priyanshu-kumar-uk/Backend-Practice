@@ -1,6 +1,6 @@
 import { register, login, getMe } from '../Services/authApi.js'
 import {useDispatch} from 'react-redux'
-import {setUser} from '../../../Redux/auth.slice.js'
+import {setError, setLoading, setUser} from '../../../Redux/auth.slice.js'
 export function auth() {
 
   let dispatch = useDispatch()
@@ -18,9 +18,19 @@ export function auth() {
   }
 
   async function getuser() {
-    let res = await getMe()
-    dispatch(setUser(res.userGet))
-    return res
+    dispatch(setLoading(true))
+    try {
+      let res = await getMe()
+      dispatch(setUser(res.userGet))
+      dispatch(setError(null))
+      return res
+    } catch (error) {
+      dispatch(setUser(null))
+      dispatch(setError(error?.response?.data?.message || "User is not logged in"))
+      return null
+    } finally {
+      dispatch(setLoading(false))
+    }
   }
 
   return {

@@ -72,10 +72,9 @@ const MediaSlider = ({ media = [], caption }) => {
 
 const PostCard = ({ post }) => {
   const mediaItems = Array.isArray(post?.media) ? post.media.filter(Boolean) : []
-  const loginUser = useSelector((state) => state.auth.user)
   const author = post?.author
-  const authorName = author?.username || loginUser?.username || 'User'
-  const authorImage = author?.profileImage || loginUser?.profileImage
+  const authorName = author?.username || 'Unknown user'
+  const authorImage = author?.profileImage
 
   return (
     <article className="insta-post-card">

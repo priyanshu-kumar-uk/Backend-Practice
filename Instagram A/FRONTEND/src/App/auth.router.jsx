@@ -4,19 +4,19 @@ import Register from '../Features/Auth/Pages/Register'
 import Home from '../Features/Post/Pages/Home'
 import FeedPage from '../Features/Post/Pages/FeedPage'
 import CreatePostPage from '../Features/Post/Pages/CreatePostPage'
-import MessagePage from '../Features/Post/Pages/MessagePage'
 import ProfilePage from '../Features/Post/Pages/ProfilePage'
 import SearchPage from '../Features/Users/Pages/SearchPage'
 import { Notification } from '../Features/Users/Pages/Notification'
 import Following from '../Features/Post/Components/Following'
 import Followers from '../Features/Post/Components/Followers'
 import Protected from './Protected'
+import Message from '../Features/Chat/pages/Message'
 
 export let router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Navigate to="/login"  />,
-  },
+  // {
+  //   path: '/',
+  //   element: <Navigate to="/home"  />,
+  // },
   {
     element : <Protected/>,
     children:[
@@ -37,7 +37,7 @@ export let router = createBrowserRouter([
       },
       {
         path: 'message',
-        element: <MessagePage />,
+        element: <Message/>,
       },
       {
         path: 'profile',

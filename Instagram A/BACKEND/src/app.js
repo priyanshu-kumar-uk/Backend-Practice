@@ -8,7 +8,7 @@ import passport from 'passport'
 import config from './config/config.js'
 import cors from 'cors'
 import morgan from 'morgan'
-
+import chatRouter from './Router/chatuser.router.js'
 
 const app = express()
 
@@ -33,5 +33,6 @@ passport.use(new GoogleStrategy({
 app.use("/auth",userRouter)
 app.use("/post",postRouter)
 app.use("/",searchRouter)
+app.use("/",chatRouter)
 
 export default app

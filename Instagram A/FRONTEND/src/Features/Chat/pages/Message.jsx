@@ -1,22 +1,53 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import {chat} from '../Hooks/chat.hook'
 import { useEffect } from 'react'
 import {useSelector} from 'react-redux'
 import Chatuser from '../components/Chatuser'
+import {io} from 'socket.io-client'
 const Message = () => {
+
+  const URL = "http://localhost:3000"
 
    let{chatUsers} = chat()
    let chatUser =   useSelector(state=> state.chats.chatUser)
    let chatUserList = Object.values(chatUser || {})
-   let activeUser = chatUserList[0]
+   let chatuserId =  useSelector(state => state.chats.chatUserId )
+   let activeUser = chatUser[chatuserId] || chatUserList[0]
    let displayName = activeUser?.username || 'Select a conversation'
    let profileImage = activeUser?.profileImage
-
-  let chatuserId =  useSelector(state => state.chats.chatUserId )
   
+   let socketRef = useRef(null)
+
+  //   function chatEmit () {
+  //     socketRef.current.emit("send-msg",{
+       
+  //     })
+  //  }
 
     useEffect(()=>{
-       chatUsers()
+      
+      const socket = io(URL,
+        {withCredentials:true}
+      )
+      socketRef.current = socket
+
+      socket.on("connect",(socket)=>{
+        console.log("Connected to socket",socket)
+      })
+
+      socket.on("connect_error",(error)=>{
+        console.log(error)
+      })
+
+      chatUsers()
+    return ()=>{
+      socket.disconnect("disconnect",()=>{
+        console.log("Disconnected user")
+      }),
+      socket.current = null  
+    }
+
+       
     },[])
 
   return (

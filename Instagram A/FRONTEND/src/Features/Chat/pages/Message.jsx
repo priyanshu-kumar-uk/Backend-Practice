@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import {chat} from '../Hooks/chat.hook'
 import { useEffect } from 'react'
 import {useSelector} from 'react-redux'
@@ -16,13 +16,18 @@ const Message = () => {
    let displayName = activeUser?.username || 'Select a conversation'
    let profileImage = activeUser?.profileImage
   
-   let socketRef = useRef(null)
+   const [message, setMessage] = useState(null)
 
-  //   function chatEmit () {
-  //     socketRef.current.emit("send-msg",{
-       
-  //     })
-  //  }
+   let socketRef = useRef(null)
+   
+  //  function messageEmit(){
+    
+  //  } 
+
+  function handleChat(e){
+   setMessage(e.target.value)
+   console.log(message)
+  }
 
     useEffect(()=>{
       
@@ -31,22 +36,23 @@ const Message = () => {
       )
       socketRef.current = socket
 
-      socket.on("connect",(socket)=>{
-        console.log("Connected to socket",socket)
+      socket.on("connect",()=>{  // client side par koi fnc kai inside socket nahi atta hai
+        console.log("Connected to socket")  
       })
 
       socket.on("connect_error",(error)=>{
         console.log(error)
       })
 
-      chatUsers()
-    return ()=>{
-      socket.disconnect("disconnect",()=>{
-        console.log("Disconnected user")
-      }),
-      socket.current = null  
-    }
+      socket.on("disconnect",()=>{
+        console.log("Disconnected user ")  // only show kar rha ahi 
+      })
 
+      chatUsers()
+     return ()=>{ // why return because when component will dead than perform disconnet 
+      socket.disconnect()  // actual disconnet yai kar rha hai 
+      socketRef.current = null  
+    }
        
     },[])
 
@@ -71,7 +77,7 @@ const Message = () => {
             </header>
 
             <form className="chat-compose">
-              <input type="text" placeholder="Message..." />
+              <input type="text" placeholder="Message..." value={message} onChange={(e)=>handleChat } />
               <button type="button">Send</button>
             </form>
           </>

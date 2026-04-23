@@ -30,9 +30,9 @@ passport.use(new GoogleStrategy({
   return done(null, profile);
 }));
 
-app.use("/auth",userRouter)
-app.use("/post",postRouter)
-app.use("/",searchRouter)
-app.use("/",chatRouter)
+app.use("/api/auth",userRouter)
+app.use("/api/post",postRouter)
+app.use("/api/",searchRouter)
+app.use("/api/",chatRouter)
 
 export default app

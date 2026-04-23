@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export async function getPost() {
-  let response = await axios.get("http://localhost:3000/post/getPost")
+  let response = await axios.get("http://localhost:3000/api/post/getPost")
   return response.data
 }
 
@@ -13,7 +13,7 @@ export async function createPost({files,caption}){
     formData.append("Post",file)    // post jo multer name diye hai bo hai
   })
 
-   let response = await axios.post("http://localhost:3000/post/upload",formData,{
+   let response = await axios.post("http://localhost:3000/api/post/upload",formData,{
     withCredentials:true
    })
    console.log(response)

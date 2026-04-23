@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export async function register({username,email,password,fullname}){
   try{
-     let response = await axios.post("http://localhost:3000/auth/register",{
+     let response = await axios.post("http://localhost:3000/api/auth/register",{
      username,
      email,
      password,
@@ -25,7 +25,7 @@ export async function login ({usernameOrEmail,password}){
       }
 
      try{
-       let res=  await axios.post("http://localhost:3000/auth/login",values,{
+       let res=  await axios.post("http://localhost:3000/api/auth/login",values,{
         withCredentials:true
        })
        return res.data
@@ -34,7 +34,7 @@ export async function login ({usernameOrEmail,password}){
      }
 }
  export async function getMe(){
-   let res = await axios.get("http://localhost:3000/auth/getMe",{
+   let res = await axios.get("http://localhost:3000/api/auth/getMe",{
     withCredentials:true
    })
    return res.data

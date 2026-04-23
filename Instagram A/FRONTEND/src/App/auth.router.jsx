@@ -13,10 +13,10 @@ import Protected from './Protected'
 import Message from '../Features/Chat/pages/Message'
 
 export let router = createBrowserRouter([
-  // {
-  //   path: '/',
-  //   element: <Navigate to="/home"  />,
-  // },
+  {
+    path: '/',
+    element: <Navigate to="/login"  />,
+  },
   {
     element : <Protected/>,
     children:[

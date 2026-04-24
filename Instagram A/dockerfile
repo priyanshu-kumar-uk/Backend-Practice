@@ -1,0 +1,26 @@
+FROM node:20 AS frontend_builder
+WORKDIR /app
+
+COPY ./FRONTEND/package*.json /app
+
+RUN npm install
+
+COPY ./FRONTEND /app
+
+RUN npm run build
+
+FROM node:20
+
+WORKDIR /app
+
+COPY ./BACKEND/package*.json /app
+
+RUN npm install 
+
+COPY ./BACKEND /app
+
+COPY --from=frontend_builder /app/dist /app/public
+
+CMD ["node","server.js"]
+
+# for useing frontend and backend run on broswer same port 

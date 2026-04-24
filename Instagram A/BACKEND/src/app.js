@@ -12,6 +12,8 @@ import chatRouter from './Router/chatuser.router.js'
 
 const app = express()
 
+app.use(express.static("public"))
+
 app.use(morgan("dev"))
 app.use(express.json())
 app.use(cors({
@@ -34,5 +36,12 @@ app.use("/api/auth",userRouter)
 app.use("/api/post",postRouter)
 app.use("/api/",searchRouter)
 app.use("/api/",chatRouter)
+
+app.get("*name",(req,res)=>{
+  console.log(req.params.name)
+
+  res.sendFile("index.html", {root: "public"})
+})
+
 
 export default app

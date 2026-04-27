@@ -1,7 +1,7 @@
 FROM node:20 AS frontend_builder
 WORKDIR /app
 
-COPY ./FRONTEND/package*.json /app
+COPY ./FRONTEND/package*.json /app   
 
 RUN npm install
 
@@ -9,6 +9,7 @@ COPY ./FRONTEND /app
 
 RUN npm run build
 
+# State - 2
 FROM node:20
 
 WORKDIR /app
@@ -19,8 +20,18 @@ RUN npm install
 
 COPY ./BACKEND /app
 
-COPY --from=frontend_builder /app/dist /app/public
+COPY --from=frontend_builder /app/dist /app/public 
 
 CMD ["node","server.js"]
 
-# for useing frontend and backend run on broswer same port 
+# for useing frontend and backend run on broswer same port / we want fullstack server image 
+# Stage - 1
+# 1. app kai andar fronend ki pakeage json file will go ,
+# 2 . than package install
+# 3 . than copy data all files 
+# 4 . than copy files sai dist file bana di ,
+
+# s - 2 
+#   same as with backend  3 step ,
+#   copy kiya frontend_builder sai diat file ko  backend kai public folder mai 
+
